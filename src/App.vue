@@ -1,14 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <h1>Another Todo List</h1>
+    <NavBar />
+    <router-view />
   </div>
 </template>
 
+<script>
+import NavBar from "./components/NavBar.vue";
+
+export default {
+  name: "App",
+  components: {
+    NavBar
+  },
+  mounted() {
+    this.$on("new-completed-todo", function(completedTodos) {
+      console.log("this from App.vue", ...completedTodos)
+    })
+  }
+};
+</script>
+
 <style lang="scss">
+html, body {
+  height: 100%;
+}
+body {
+  background: #efefef;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
